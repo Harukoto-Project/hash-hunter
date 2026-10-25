@@ -7,6 +7,8 @@ mod model;
 mod registry;
 mod scorer;
 
+const MIN_RUN_LEN: usize = 4;
+
 pub use model::{Hit, ScoredHash};
 pub use registry::{list_ids, select};
 pub use scorer::score_hash;

@@ -1,7 +1,8 @@
 use crate::detect::bits::bits_for_chars;
 use crate::detect::model::{Detector, Hit};
+use crate::detect::MIN_RUN_LEN;
 
-/// 先頭が `0` で連続している部分を検出する。長さ `k` のスコアは `16^-k` に対する `4k` bits。
+/// 先頭が `0` で 4 文字以上連続している部分を検出する。長さ `k` のスコアは `16^-k` に対する `4k` bits。
 pub struct LeadingZeros;
 
 impl Detector for LeadingZeros {
@@ -11,7 +12,7 @@ impl Detector for LeadingZeros {
 
     fn detect(&self, hash: &str) -> Vec<Hit> {
         let len = hash.bytes().take_while(|&b| b == b'0').count();
-        if len == 0 {
+        if len < MIN_RUN_LEN {
             return Vec::new();
         }
         vec![Hit {
@@ -40,10 +41,8 @@ mod tests {
     }
 
     #[test]
-    fn single_leading_zero_is_a_hit() {
-        let hits = LeadingZeros.detect("0abc");
-        assert_eq!(hits[0].range, 0..1);
-        assert_eq!(hits[0].score, 4.0);
+    fn ignores_short_leading_zeros() {
+        assert!(LeadingZeros.detect("000abc").is_empty());
     }
 
     #[test]

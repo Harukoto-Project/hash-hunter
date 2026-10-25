@@ -31,11 +31,11 @@ SHA-1(40자)과 SHA-256(64자) 모두 길이를 고정하지 않고 처리합니
 
 | ID | 내용 |
 | --- | --- |
-| `leading-zeros` | 앞쪽 `0`의 연속 |
-| `trailing-zeros` | 끝쪽 `0`의 연속 |
-| `repeat-run` | 같은 문자의 연속(`7777` 등) |
-| `ascending` | 16진 오름차순 연속(`12345` / `abcde`) |
-| `descending` | 16진 내림차순 연속(`54321` / `fedcb`) |
+| `leading-zeros` | 앞쪽 `0`의 연속(4자 이상) |
+| `trailing-zeros` | 끝쪽 `0`의 연속(4자 이상) |
+| `repeat-run` | 같은 문자의 연속(4자 이상. `7777` 등) |
+| `ascending` | 16진 오름차순 연속(4자 이상. `12345` / `abcde`) |
+| `descending` | 16진 내림차순 연속(4자 이상. `54321` / `fedcb`) |
 | `digits-only` | 해시 전체가 숫자(`0-9`) |
 | `letters-only` | 해시 전체가 영문(`a-f`) |
 | `palindrome` | 길이 6 이상의 회문 |

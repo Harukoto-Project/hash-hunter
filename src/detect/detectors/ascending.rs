@@ -2,7 +2,7 @@ use crate::detect::bits::bits_for_chars;
 use crate::detect::hex::hex_step_runs;
 use crate::detect::model::{Detector, Hit};
 
-/// 16 進で連続した昇順(2 文字以上)を検出する。長さ `k` のスコアは `4(k-1)` bits。
+/// 16 進で連続した昇順(4 文字以上)を検出する。長さ `k` のスコアは `4(k-1)` bits。
 pub struct Ascending;
 
 impl Detector for Ascending {
@@ -44,10 +44,15 @@ mod tests {
     #[test]
     fn does_not_wrap_around() {
         let ranges: Vec<_> = Ascending
-            .detect("ef01")
+            .detect("cdef0123")
             .iter()
             .map(|h| h.range.clone())
             .collect();
-        assert_eq!(ranges, [0..2, 2..4]);
+        assert_eq!(ranges, [0..4, 4..8]);
+    }
+
+    #[test]
+    fn ignores_short_ascent() {
+        assert!(Ascending.detect("ef01").is_empty());
     }
 }

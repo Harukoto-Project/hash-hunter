@@ -31,11 +31,11 @@ SHA-1(40文字)とSHA-256(64文字)のどちらも、長さを固定せず扱い
 
 | ID | 内容 |
 | --- | --- |
-| `leading-zeros` | 先頭の`0`の連続 |
-| `trailing-zeros` | 末尾の`0`の連続 |
-| `repeat-run` | 同じ文字の連続(`7777`など) |
-| `ascending` | 16進の昇順連続(`12345` / `abcde`) |
-| `descending` | 16進の降順連続(`54321` / `fedcb`) |
+| `leading-zeros` | 先頭の`0`の連続(4文字以上) |
+| `trailing-zeros` | 末尾の`0`の連続(4文字以上) |
+| `repeat-run` | 同じ文字の連続(4文字以上。`7777`など) |
+| `ascending` | 16進の昇順連続(4文字以上。`12345` / `abcde`) |
+| `descending` | 16進の降順連続(4文字以上。`54321` / `fedcb`) |
 | `digits-only` | ハッシュ全体が数字(`0-9`) |
 | `letters-only` | ハッシュ全体が英字(`a-f`) |
 | `palindrome` | 長さ6以上の回文 |

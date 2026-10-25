@@ -1,5 +1,7 @@
 use std::ops::Range;
 
+use crate::detect::MIN_RUN_LEN;
+
 /// 16 進 1 桁を 0..=15 に変換する。
 pub fn hex_digit(b: u8) -> Option<u8> {
     match b {
@@ -10,7 +12,7 @@ pub fn hex_digit(b: u8) -> Option<u8> {
     }
 }
 
-/// 各桁が直前の桁 + `step` になっている極大な連続を返す。長さ 2 未満は含めない。
+/// 各桁が直前の桁 + `step` になっている極大な連続を返す。長さ 4 未満は含めない。
 pub fn hex_step_runs(hash: &str, step: i8) -> Vec<Range<usize>> {
     let bytes = hash.as_bytes();
     let mut runs = Vec::new();
@@ -32,7 +34,7 @@ pub fn hex_step_runs(hash: &str, step: i8) -> Vec<Range<usize>> {
             prev = digit;
             len += 1;
         }
-        if len >= 2 {
+        if len >= MIN_RUN_LEN {
             runs.push(i..i + len);
         }
         i += len;
@@ -55,7 +57,8 @@ mod tests {
     #[test]
     fn step_runs_are_maximal_and_unwrapped() {
         assert_eq!(hex_step_runs("12345", 1), vec![0..5]);
-        assert_eq!(hex_step_runs("ef01", 1), vec![0..2, 2..4]);
+        assert_eq!(hex_step_runs("cdef0123", 1), vec![0..4, 4..8]);
+        assert_eq!(hex_step_runs("ef01", 1), Vec::<Range<usize>>::new());
         assert_eq!(hex_step_runs("fedcba", -1), vec![0..6]);
     }
 }

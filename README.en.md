@@ -31,11 +31,11 @@ Each detector returns hits and a rarity score in bits. The score is `-log2(proba
 
 | ID | What it finds |
 | --- | --- |
-| `leading-zeros` | A run of `0` at the start |
-| `trailing-zeros` | A run of `0` at the end |
-| `repeat-run` | A run of the same character (`7777` and similar) |
-| `ascending` | An ascending hex run (`12345` / `abcde`) |
-| `descending` | A descending hex run (`54321` / `fedcb`) |
+| `leading-zeros` | A run of `0` at the start (4 or more) |
+| `trailing-zeros` | A run of `0` at the end (4 or more) |
+| `repeat-run` | A run of the same character (4 or more; `7777` and similar) |
+| `ascending` | An ascending hex run (4 or more; `12345` / `abcde`) |
+| `descending` | A descending hex run (4 or more; `54321` / `fedcb`) |
 | `digits-only` | The whole hash is digits (`0-9`) |
 | `letters-only` | The whole hash is letters (`a-f`) |
 | `palindrome` | A palindrome of length 6 or more |

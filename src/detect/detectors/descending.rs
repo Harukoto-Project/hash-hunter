@@ -2,7 +2,7 @@ use crate::detect::bits::bits_for_chars;
 use crate::detect::hex::hex_step_runs;
 use crate::detect::model::{Detector, Hit};
 
-/// 16 進で連続した降順(2 文字以上)を検出する。長さ `k` のスコアは `4(k-1)` bits。
+/// 16 進で連続した降順(4 文字以上)を検出する。長さ `k` のスコアは `4(k-1)` bits。
 pub struct Descending;
 
 impl Detector for Descending {
@@ -39,5 +39,10 @@ mod tests {
         let hits = Descending.detect("cba9");
         assert_eq!(hits[0].range, 0..4);
         assert_eq!(hits[0].score, 12.0);
+    }
+
+    #[test]
+    fn ignores_short_descent() {
+        assert!(Descending.detect("fed1").is_empty());
     }
 }

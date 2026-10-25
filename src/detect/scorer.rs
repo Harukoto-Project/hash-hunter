@@ -23,9 +23,9 @@ mod tests {
     #[test]
     fn sums_scores_of_all_hits() {
         let detectors = registry::select(&strings(&["leading-zeros", "repeat-run"]), &[]).unwrap();
-        let scored = score_hash("01a7777", &detectors);
+        let scored = score_hash("0000abc", &detectors);
         assert_eq!(scored.hits.len(), 2);
-        assert_eq!(scored.score, 4.0 + 12.0);
+        assert_eq!(scored.score, 16.0 + 12.0);
     }
 
     #[test]
