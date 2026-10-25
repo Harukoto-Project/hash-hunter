@@ -7,9 +7,6 @@ mod model;
 mod registry;
 mod scorer;
 
-#[allow(unused_imports)]
-pub use model::{Detector, Hit, ScoredHash};
-#[allow(unused_imports)]
-pub use registry::select;
-#[allow(unused_imports)]
+pub use model::{Hit, ScoredHash};
+pub use registry::{list_ids, select};
 pub use scorer::score_hash;

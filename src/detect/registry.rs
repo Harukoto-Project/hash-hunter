@@ -22,6 +22,11 @@ pub fn all() -> Vec<Box<dyn Detector>> {
     ]
 }
 
+/// 登録順の検出器 ID 一覧を返す。
+pub fn list_ids() -> Vec<&'static str> {
+    all().iter().map(|detector| detector.id()).collect()
+}
+
 /// `only` / `exclude` の ID で絞り込んだ検出器を返す。
 /// `only` が空なら全検出器が対象。存在しない ID があれば `unknown_detector` エラーにする。
 pub fn select(only: &[String], exclude: &[String]) -> Result<Vec<Box<dyn Detector>>, AppError> {
