@@ -1,0 +1,11 @@
+{
+  "name": "hash-hunter",
+  "private": true,
+  "scripts": {
+    "dev": "tauri dev",
+    "format": "pnpm --dir ui format"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2"
+  }
+}

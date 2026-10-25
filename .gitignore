@@ -2,3 +2,7 @@
 /.dev
 /.cursor
 AGENTS.md
+node_modules
+/ui/dist
+*.local
+/src-tauri/gen

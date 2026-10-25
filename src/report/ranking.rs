@@ -10,6 +10,14 @@ pub fn print_ranking(scored: &[ScoredHash], top: usize, min_score: f64) {
     print!("{}", render_ranking(scored, top, min_score, color));
 }
 
+/// スコア降順・同点はハッシュ昇順で、`min_score` 以上の上位 `top` 件を返す。
+pub fn rank(scored: &[ScoredHash], top: usize, min_score: f64) -> Vec<ScoredHash> {
+    select_ranked(scored, top, min_score)
+        .into_iter()
+        .cloned()
+        .collect()
+}
+
 /// フィルタ・ソート済みのランキング文字列を返す。
 pub fn render_ranking(scored: &[ScoredHash], top: usize, min_score: f64, color: bool) -> String {
     let ranked = select_ranked(scored, top, min_score);

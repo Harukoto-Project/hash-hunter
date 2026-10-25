@@ -1,13 +1,13 @@
 mod cli;
-mod detect;
-mod error;
-mod git;
-mod report;
 
 use clap::Parser;
 
+use hash_hunter::detect;
+use hash_hunter::error::AppError;
+use hash_hunter::report;
+use hash_hunter::scan;
+
 use crate::cli::Args;
-use crate::error::AppError;
 
 fn main() {
     if let Err(err) = run(Args::parse()) {
@@ -23,13 +23,7 @@ fn run(args: Args) -> Result<(), AppError> {
     }
 
     let repo = args.repo.expect("repo is required unless --list-detectors");
-    let detectors = detect::select(&args.only, &args.exclude)?;
-    let workspace = git::Workspace::open(&repo)?;
-    let commits = git::list_commits(workspace.path(), args.branch.as_deref())?;
-    let scored: Vec<_> = commits
-        .iter()
-        .map(|commit| detect::score_hash(&commit.hash, &detectors))
-        .collect();
+    let scored = scan::collect(&repo, args.branch.as_deref(), &args.only, &args.exclude)?;
     report::print_ranking(&scored, args.top, args.min_score);
     Ok(())
 }
