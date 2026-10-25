@@ -91,7 +91,7 @@ Authentication for private repositories is left to Git (SSH keys, credential hel
 
 ## Setup
 
-You need Rust (edition 2021) and a `git` command on `PATH`.
+You need Rust (edition 2021) and a `git` command on `PATH`. Windows is the confirmed environment. macOS and Linux have not been verified.
 
 ```bash
 git clone https://github.com/Harukoto-Project/hash-hunter.git

@@ -4,7 +4,7 @@ IssueとPull Requestを歓迎します。
 
 ## 開発環境
 
-- OS: TODO: 要確認
+- OS: Windows(確認済み)。macOS/Linuxは未確認
 - Rust (edition 2021)
 
 ## 提出前の確認

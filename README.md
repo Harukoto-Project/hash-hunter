@@ -91,7 +91,7 @@ privateリポジトリの認証は、SSH鍵やcredential helperなどgit側の�
 
 ## セットアップ
 
-動作にはRust(edition 2021)と、PATH上の`git`コマンドが必要です。
+動作にはRust(edition 2021)と、PATH上の`git`コマンドが必要です。確認済みの環境はWindowsです。macOS/Linuxは未確認です。
 
 ```bash
 git clone https://github.com/Harukoto-Project/hash-hunter.git

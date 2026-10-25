@@ -91,7 +91,7 @@ hash-hunter --list-detectors
 
 ## 설치
 
-Rust(edition 2021)와 PATH의 `git` 명령이 필요합니다.
+Rust(edition 2021)와 PATH의 `git` 명령이 필요합니다. 확인된 환경은 Windows입니다. macOS/Linux는 확인되지 않았습니다.
 
 ```bash
 git clone https://github.com/Harukoto-Project/hash-hunter.git
